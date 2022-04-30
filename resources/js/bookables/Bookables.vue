@@ -49,23 +49,10 @@ export default {
     },
     created() {
         this.loading = true
-
-        const p = new Promise((resolve, reject) => {
-            console.log(resolve)
-            console.log(reject)
-            setTimeout(() => {
-                resolve("Hello")
-            }, 300)
-        }).then(result => `Hello again ${result}`)
-            .then(result => console.log(result))
-            .catch(result => console.error(result))
-
-        console.log(p)
-
         const response = axios
             .get('/api/bookables')
             .then(response => {
-                this.bookables = response.data
+                this.bookables = response.data.data
                 this.loading = false
             })
 
